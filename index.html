@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+
+</head>
+<body>
+
+ <div class="for-team">
+  <form id="myForm">
+   <table>
+      <tr>
+        <th>Field</th>
+        <th>Input Type</th>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="name" required></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="email" name="email" required></td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td><input type="tel" name="phone" pattern="[0-9]{10}" required></td>
+      </tr>
+      <tr>
+        <td>Birthdate:</td>
+        <td><input type="date" name="birthdate" required></td>
+      </tr>
+      <tr>
+        <td>Appointment Time:</td>
+        <td><input type="time" name="appointmentTime" required></td>
+      </tr>
+      <tr>
+        <td>Favorite Color:</td>
+        <td>
+          <select name="favoriteColor" required>
+            <option value="">Select color</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Payment Method:</td>
+        <td>
+          <input type="radio" name="paymentMethod" value="creditCard" required> Credit Card<br>
+          <input type="radio" name="paymentMethod" value="Paytm">Paytm<br>
+        </td>
+      </tr>
+       <tr>
+        <td>Age:</td>
+        <td><input type="number" name="age" min="0" max="100" required></td>
+      </tr>
+        <tr>
+
+
+         <td>Checkbox Options:</td>
+        <td>
+          <input type="checkbox" name="Manful1" value="Manful1"> Manful 1<br>
+          <input type="checkbox" name="Manful2" value="Manful2"> Manful 2<br>
+          <input type="checkbox" name="Manful3" value="Manful3"> Manful 3
+        </td>
+      </tr>
+      <tr>
+        <td>Upload Photo:</td>
+        <td><input type="file" name="photo" accept="image/*"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+        
+      <tr>
+     <!-- <td>
+          <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+        </td> -->
+       
+       </tr>
+        
+       <tr>
+        <td></td>
+       </tr>
+       
+    </table>
+    <div id="buttonContainer"></div>
+  </form></div>
+
+  <script src="./js/jquery-3.6.1.min.js"></script>
+
+   <script> 
+  
+
+  $(document).ready(function() {
+      const submitBtn = $('#myForm input[type="submit"]');
+      const buttonContainer = $('#buttonContainer');
+
+      function handleButtonState() {
+        buttonContainer.empty();
+        const saveBtn = $('<button class="edit-btn">Save</button>');
+        const deleteBtn = $('<button class="delete-btn">Delete</button>');
+        const editBtn = $('<button class="edit-btn">Edit</button>');
+
+        buttonContainer.append(saveBtn, deleteBtn, editBtn);
+        editBtn.hide();
+        submitBtn.on('click', function(e) {
+          e.preventDefault();
+          saveBtn.show();
+          deleteBtn.show();
+          submitBtn.hide();
+        });
+        saveBtn.on('click', function() {
+         
+          editBtn.show();
+
+    
+          saveBtn.hide();
+        });
+
+        deleteBtn.on('click', function() {
+        $('#myForm').remove();
+
+         
+          buttonContainer.empty();
+        });
+      }
+
+      handleButtonState();
+    });
+  </script>
+     
+
+
+     
+
+
+
+
+
+</body>
+</html>

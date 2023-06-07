@@ -1,0 +1,85 @@
+
+.for-team table tr td .edit-btn,
+.for-team table tr td .delete-btn {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+
+.for-team table tr td {
+  text-align: center;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s;
+}
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+select,
+input[type="range"],
+input[type="file"] {
+  width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    box-shadow: 1px rg;
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, .2);
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+.hidden {
+  display: none;
+}
+button.edit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button.delete-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div#buttonContainer {
+  text-align: center;
+
+}
