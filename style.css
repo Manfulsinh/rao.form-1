@@ -83,3 +83,60 @@ div#buttonContainer {
   text-align: center;
 
 }
+
+
+
+  .container {
+    margin-top: 20px;
+  }
+
+  .list {
+    text-align: center;
+  }
+
+  .manful {
+    margin-top: 20px;
+  }
+
+  #productTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #productTable th,
+  #productTable td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+
+  #productTable th {
+    background-color: #f2f2f2;
+  }
+
+  #productTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #productTable tbody tr:hover {
+    background-color: #e6e6e6;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 12px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .edit-btn {
+    background-color: #2196F3;
+  }
+
+  .edit-btn:hover,
+  .delete-btn:hover {
+    background-color: #45a049;
+  }
+</style>
