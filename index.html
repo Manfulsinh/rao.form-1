@@ -203,7 +203,7 @@ deleteButtons.forEach(function(button) {
 var editButtons = document.querySelectorAll(".edit-btn");
 editButtons.forEach(function(button) {
  button.addEventListener("click", function(event) {
-    console.log("edit button");
+    
     var index = parseInt(event.target.dataset.index);
     updateEntry(index);
 
@@ -228,7 +228,9 @@ console.log(one[index])
   document.getElementById("birthday").value= one[index].birthdate
   document.getElementById("times").value= one[index].appointmentTime
   document.getElementById("color").value= one[index].favoriteColor
-  document.getElementById("age").value= one[index].paymentMethod
+  document.getElementById("age").value= one[index].age
+  document.getElementById("card").value= one[index].paymentMethod
+  document.getElementById("chekbox").value= one[index].Manful1
 
 
 
