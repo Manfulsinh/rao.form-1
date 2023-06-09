@@ -19,28 +19,28 @@
       </tr>
       <tr>
         <td>Name:</td>
-        <td><input type="text" name="name" required class="first-names"></td>
+        <td><input type="text" name="name" required class="first-names" id="name"/></td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><input type="email" name="email" required class="first-email"></td>
+        <td><input type="email" name="email" required class="first-email" id="email"></td>
       </tr>
       <tr>
         <td>Phone Number:</td>
-        <td><input type="tel" name="phone" pattern="[0-9]{10}" required class="first-Number"></td>
+        <td><input type="tel" name="phone" pattern="[0-9]{10}" required class="first-Number" id="number"></td>
       </tr>
       <tr>
         <td>Birthdate:</td>
-        <td><input type="date" name="birthdate" required class="first-birthday"></td>
+        <td><input type="date" name="birthdate" required class="first-birthday" id="birthday"></td>
       </tr>
       <tr>
         <td>Appointment Time:</td>
-        <td><input type="time" name="appointmentTime" required class="first-times"></td>
+        <td><input type="time" name="appointmentTime" required class="first-times" id="times"></td>
       </tr>
       <tr>
         <td>Favorite Color:</td>
         <td>
-          <select name="favoriteColor" required class="first-color">
+          <select name="favoriteColor" required class="first-color" id="color">
             <option value="">Select color</option>
             <option value="red">Red</option>
             <option value="blue">Blue</option>
@@ -52,39 +52,34 @@
       <tr>
         <td>Payment Method:</td>
         <td>
-          <input type="radio" name="paymentMethod" value="creditCard" required class="first-card"> Credit Card<br>
-          <input type="radio" name="paymentMethod" value="Paytm" class="1-card">Paytm<br>
+          <input type="radio" name="paymentMethod" value="creditCard" required class="first-card" id="card"> Credit Card<br>
+          <input type="radio" name="paymentMethod" value="Paytm" class="first-card" id="card">Paytm<br>
         </td>
       </tr>
        <tr>
         <td>Age:</td>
-        <td><input type="number" name="age" min="0" max="100" required class="first-age"></td>
+        <td><input type="number" name="age" min="0" max="100" required class="first-age" id="age"></td>
       </tr>
         <tr>
 
 
          <td>Checkbox Options:</td>
         <td>
-          <input type="checkbox" name="Manful1" value="Manful1" class="chekbox-1"> Manful 1<br>
+          <input type="checkbox" name="Manful1" value="Manful1" class="chekbox-1" id="chekbox"> Manful 1<br>
           <input type="checkbox" name="Manful1" value="Manful2" class="chekbox-1"> Manful 2<br>
           <input type="checkbox" name="Manful1" value="Manful3" class="chekbox-1"> Manful 3
         </td>
       </tr>
       <tr>
         <td>Upload Photo:</td>
-        <td><input type="file" name="photo" accept="image/*" class="first-photo"></td>
+        <td><input type="file" name="photo" accept="image/*" class="first-photo" id="photo"></td>
       </tr>
       <tr>
         <td><input class="button" type="submit" value="Submit"></td>
       </tr>
 
       <tr>
-     <!-- <td>
-          <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-        </td> -->
-
-       </tr>
+  </tr>
 
        <tr>
         <td></td>
@@ -122,123 +117,136 @@
     </div>
   </div>
 
-  <script src="./js/jquery-3.6.1.min.js"></script>
+<script src="./js/jquery-3.6.1.min.js"></script>
 
-   <script>
-// Wait for the DOM to be ready
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Get the form element
-  var form = document.getElementById("myForm");
-  var currentIndex = -1;
 
-  // Add a submit event listener to the form
-  form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting
+var form = document.getElementById("myForm");
+var currentIndex = -1;
 
-    // Get the form data
-    var formData = new FormData(form);
+form.addEventListener("submit", function(event) {
+event.preventDefault(); 
 
-    // Convert the form data to an object
-    var data = {};
-    formData.forEach(function(value, key) {
-      data[key] = value;
-    });
+var formData = new FormData(form);
 
-    // Save the form data in local storage
-    var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
-    entries.push(data);
-    localStorage.setItem("formEntries", JSON.stringify(entries));
+var data = {};
+formData.forEach(function(value, key) {
+ data[key] = value;
+});
 
-    // Clear the form inputs
-    form.reset();
+var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
+entries.push(data);
+localStorage.setItem("formEntries", JSON.stringify(entries));
 
-    // Refresh the table
-    displayFormData();
-  });
 
-  // Display the form data in the table
-  function displayFormData() {
-    var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
-    var tableBody = document.querySelector("#productTable tbody");
-    tableBody.innerHTML = "";
+form.reset();
 
-    entries.forEach(function(entry, index) {
-      
-      var row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${entry.name}</td>
-        <td>${entry.email}</td>
-        <td>${entry.phone}</td>
-        <td>${entry.birthdate}</td>
-        <td>${entry.appointmentTime}</td>
-        <td>${entry.favoriteColor}</td>
-        <td>${entry.paymentMethod}</td>
-        <td>${entry.age}</td>
-        <td>${entry.Manful1}</td>
-        <td>${entry.photo}</td>
-        <td><button class="edit-btn" data-index="${index}" onclick="editEntry(${index})">Edit</button></td>
-        <td><button class="delete-btn" data-index="${index}">Delete</button></td>
-      `;
-      tableBody.appendChild(row);
-    });
+displayFormData();
+});
 
-    // Attach event listeners to delete buttons
-    var deleteButtons = document.querySelectorAll(".delete-btn");
-    deleteButtons.forEach(function(button) {
-      button.addEventListener("click", function(event) {
-        var index = parseInt(event.target.dataset.index);
-        deleteEntry(index);
-      });
-    });
-  }
+function editEntry(index) {
 
-  // Delete an entry from local storage and refresh the table
-  function deleteEntry(index) {
-    var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
-    entries.splice(index, 1);
-    localStorage.setItem("formEntries", JSON.stringify(entries));
+  currentIndex = index;
+   var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
+   var entry = entries[index];
+   form.querySelector('input[name="name"]').value = entry.name;
+   form.querySelector('input[name="email"]').value = entry.email;
+   form.querySelector('input[name="phone"]').value = entry.phone;
+   form.querySelector('input[name="birthdate"]').value = entry.birthdate;
+   form.querySelector('input[name="appointmentTime"]').value = entry.appointmentTime;
+   form.querySelector('select[name="favoriteColor"]').value = entry.favoriteColor;
+   form.querySelector('input[name="paymentMethod"][value="' + entry.paymentMethod + '"]').checked = true;
+   form.querySelector('input[name="age"]').value = entry.age;
 
-    displayFormData();
-  }
+   form.removeEventListener("submit", handleSubmit);
+ form.addEventListener("submit", updateEntry);
+ }
 
-  function editEntry(index) {
-    currentIndex = index;
-    var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
-    var entry = entries[index];
 
-    // Populate the form with the selected entry
-    form.querySelector('input[name="name"]').value = entry.name;
-    form.querySelector('input[name="email"]').value = entry.email;
-    form.querySelector('input[name="phone"]').value = entry.phone;
-    form.querySelector('input[name="birthdate"]').value = entry.birthdate;
-    form.querySelector('input[name="appointmentTime"]').value = entry.appointmentTime;
-    form.querySelector('select[name="favoriteColor"]').value = entry.favoriteColor;
-    form.querySelector('input[name="paymentMethod"][value="' + entry.paymentMethod + '"]').checked = true;
-    form.querySelector('input[name="age"]').value = entry.age;
-    
-    form.removeEventListener("submit", handleSubmit);
-  form.addEventListener("submit", updateEntry);
-  }
 
-  // Load and display the initial form data
-  displayFormData();
+function displayFormData() {
+var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
+var tableBody = document.querySelector("#productTable tbody");
+tableBody.innerHTML = "";
+
+entries.forEach(function(entry, index) {
+ 
+ var row = document.createElement("tr");
+ row.innerHTML = `
+   <td>${entry.name}</td>
+   <td>${entry.email}</td>
+   <td>${entry.phone}</td>
+   <td>${entry.birthdate}</td>
+   <td>${entry.appointmentTime}</td>
+   <td>${entry.favoriteColor}</td>
+   <td>${entry.paymentMethod}</td>
+   <td>${entry.age}</td>
+   <td>${entry.Manful1}</td>
+   <td>${entry.photo}</td>
+   <td><button class="edit-btn" data-index="${index}">Edit</button></td>
+   <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+ `;
+ tableBody.appendChild(row);
 });
 
 
- </script> 
+
+var deleteButtons = document.querySelectorAll(".delete-btn");
+deleteButtons.forEach(function(button) {
+ button.addEventListener("click", function(event) {
+   var index = parseInt(event.target.dataset.index);
+   deleteEntry(index);
+ });
+});
+
+var editButtons = document.querySelectorAll(".edit-btn");
+editButtons.forEach(function(button) {
+ button.addEventListener("click", function(event) {
+    console.log("edit button");
+    var index = parseInt(event.target.dataset.index);
+    updateEntry(index);
+
+  
+ });
+});
 
 
 
- 
+}
+
+function updateEntry(index) {
+var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
+
+var fetchEntry = localStorage.getItem("formEntries");
+var one = JSON.parse(fetchEntry)
+console.log(one[index])
+
+  document.getElementById("name").value= one[index].name
+  document.getElementById("email").value= one[index].email
+  document.getElementById("number").value= one[index].phone
+  document.getElementById("birthday").value= one[index].birthdate
+  document.getElementById("times").value= one[index].appointmentTime
+  document.getElementById("color").value= one[index].favoriteColor
+  document.getElementById("age").value= one[index].paymentMethod
 
 
 
+displayFormData();
+}
 
+function deleteEntry(index) {
+var entries = JSON.parse(localStorage.getItem("formEntries")) || [];
+entries.splice(index, 1);
+localStorage.setItem("formEntries", JSON.stringify(entries));
 
+displayFormData();
+}
 
+displayFormData();
 
+});
 
-
-
+</script>  
 </body>
 </html>
